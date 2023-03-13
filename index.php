@@ -1,3 +1,7 @@
+<?php
+    include "functions.php";
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -29,18 +33,6 @@
     <script type="text/javascript" src="./js/app.js" defer></script>
 </head>
 
-<!-- Descrizione
-Dobbiamo creare una pagina che permetta ai nostri utenti di utilizzare il nostro generatore di password (abbastanza) sicure.
-
-L'esercizio è suddiviso in varie milestone ed è molto importante svilupparle in modo ordinato.
-
-Milestone 1
-Creare un form che invii in GET la lunghezza della password. Una nostra funzione utilizzerà questo dato per generare una password casuale (composta da lettere, lettere maiuscole, numeri e simboli) da restituire all'utente.
-Scriviamo tutto (logica e layout) in un unico file *index.php*.
-
-Milestone 2
-Verificato il corretto funzionamento del nostro codice, spostiamo la logica in un file *functions.php* che includeremo poi nella pagina principale -->
-
 <body>
     <div class="container">
     <h1 class="my-5">Password Generator</h1>
@@ -67,12 +59,8 @@ Verificato il corretto funzionamento del nostro codice, spostiamo la logica in u
                     <?php
                         if (isset($_GET["password_length"])) {
                             $length = $_GET["password_length"];
-                            $keyboard_characters = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789!@#$%^&*()_+-=[]{};:,.<>/?";
-                            $password = "";
-                            for ($i=0; $i < $length; $i++) { 
-                                $random_character = $keyboard_characters[rand(0, strlen($keyboard_characters) - 1)];
-                                $password .= $random_character;
-                            }
+                            $password = generatePassword($length);
+                    
                             echo "La password generata automaticamente è: $password";
                         }
                     ?>
